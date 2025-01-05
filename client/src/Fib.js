@@ -6,7 +6,8 @@ function Fib() {
   const [seenIndexes, setSeenIndexes] = useState([]);
   const [values, setValues] = useState({});
   const [index, setIndex] = useState('');
-
+  const [error, setError] = useState(''); 
+  
   useEffect(() => {
     fetchValues();
     fetchIndexes();
@@ -25,8 +26,19 @@ function Fib() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    await axios.post('/api/fib/values', { index });
-    setIndex('');
+    try {
+        await axios.post('/api/fib/values', { index });
+        setIndex('');
+        // Refresh the values and indexes after successful submission
+        await fetchValues();
+        await fetchIndexes();
+      } catch (err) {
+        if (err.response && err.response.status === 422) {
+          setError(err.response.data.message || 'Invalid input');
+        } else {
+          setError('An error occurred while processing your request');
+        }
+      }
   };
 
   const renderSeenIndexes = () => {
