@@ -1,31 +1,22 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import AboutPage from "./AboutPage";
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import AboutPage from "./AboutPage.js";
 import Fib from "./Fib.js";
 
 function App() {
   return (
     <Router>
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p></p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
+        <nav className="nav-links">
           <Link to="/">Home</Link>
-          <Link to="/about">About Page</Link>
-        </header>
+          <Link to="/about">About</Link>
+        </nav>
         <div>
-          <Route exact path="/" component={Fib} />
-          <Route path="/about" component={AboutPage} />
+          <Routes>
+            <Route path="/" element={<Fib />} />
+            <Route path="/about" element={<AboutPage />} />
+          </Routes>
         </div>
       </div>
     </Router>

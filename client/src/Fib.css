@@ -1,0 +1,76 @@
+.fib-container {
+  padding: 2rem;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.input-form {
+  margin-bottom: 2rem;
+}
+
+.input-form label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.input-group {
+  display: flex;
+  gap: 1rem;
+}
+
+.input-group input {
+  flex: 1;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.input-group button {
+  padding: 0.5rem 1rem;
+  background-color: #0066cc;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.input-group button:hover {
+  background-color: #0052a3;
+}
+
+.results-section {
+  display: grid;
+  gap: 2rem;
+}
+
+.result-block {
+  background-color: #f8f9fa;
+  padding: 1rem;
+  border-radius: 4px;
+}
+
+.result-block h3 {
+  margin-top: 0;
+  color: #333;
+}
+
+.seen-indexes {
+  font-family: monospace;
+  font-size: 1.1rem;
+}
+
+.calculated-values {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.calculated-values div {
+  padding: 0.5rem;
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+} 
