@@ -43,7 +43,7 @@ route.get('/values/all', async (req, res) => {
 
 // get all sequence stored in redis
 route.get('/values/current', async (req, res) => {
-    redisClient.hgetAll('values', (err, values) => {
+    redisClient.hgetall('values', (err, values) => {
         res.status(200).send(values);
     });
 });
