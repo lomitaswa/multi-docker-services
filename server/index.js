@@ -8,7 +8,7 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-app.use('/api/fib/', fibRoutes);
+app.use('/fib/', fibRoutes);
 
 app.listen(5000, () => {
     console.log('Listening on PORT 5000...')
