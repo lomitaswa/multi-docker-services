@@ -42,15 +42,19 @@ function Fib() {
   };
 
   const renderSeenIndexes = () => {
-    return seenIndexes.map(({ number }) => number).join(', ');
-  };
+    if(seenIndexes) return seenIndexes.map(({ number }) => number).join(', ');
+    return [];
+};
 
   const renderValues = () => {
-    return Object.keys(values).map((key) => (
-      <div key={key}>
-        For index {key} I have calculated {values[key]}
-      </div>
-    ));
+    if(values) {
+        return Object.keys(values).map((key) => (
+            <div key={key}>
+                For index {key} I have calculated {values[key]}
+            </div>
+        ));
+    }
+    return [];
   };
 
   return (

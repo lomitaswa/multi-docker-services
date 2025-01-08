@@ -8,8 +8,10 @@ function App() {
   return (
     <Router>
       <div className="App">
+        <header>
+          <h3>fibonacci Calculator</h3>
+        </header>
         <nav className="nav-links">
-          <h3>Hi from Kubernetes</h3>
           <Link to="/">Home</Link>
           <Link to="/about">About</Link>
         </nav>

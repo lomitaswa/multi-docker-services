@@ -1,54 +1,30 @@
 services:
-  postgres:
-    image: 'postgres:latest'
-    environment:
-      - POSTGRES_PASSWORD=password
-  redis:
-    image: 'redis:latest'
-    ports:
-      - "6379:6379"
-  api:
-    restart: always
-    build:
-      context: ./server
-      dockerfile: Dockerfile.dev
-    volumes:
-      - /app/node_modules
-      - ./server:/app
-    depends_on:
-      - redis
-    environment:
-      - REDIS_HOST=redis
-      - REDIS_PORT=6379
-      - PG_USER=postgres
-      - PG_HOST=postgres
-      - PG_DATABASE=postgres
-      - PG_PASSWORD=password
-      - PG_PORT=5432
   client:
-    build:
-      context: ./client
-      dockerfile: Dockerfile.dev
-    volumes:
-      - /app/node_modules
-      - ./client:/app
-    stdin_open: true
+    image: "lomitaswa/multi-client"
+    mem_limit: 128m
+    hostname: client
+  server:
+    image: "lomitaswa/multi-server"
+    mem_limit: 128m
+    hostname: api
     environment:
-      - WDS_SOCKET_PORT=0
+      - REDIS_HOST=$REDIS_HOST
+      - REDIS_PORT=$REDIS_PORT
+      - PGUSER=$PGUSER
+      - PGHOST=$PGHOST
+      - PGDATABASE=$PGDATABASE
+      - PGPASSWORD=$PGPASSWORD
+      - PGPORT=$PGPORT
   worker:
-    build:
-      context: ./worker
-      dockerfile: Dockerfile.dev
+    image: "lomitaswa/multi-worker"
+    mem_limit: 128m
+    hostname: worker
     environment:
-      - REDIS_HOST=redis
-      - REDIS_PORT=6379
+      - REDIS_HOST=$REDIS_HOST
+      - REDIS_PORT=$REDIS_PORT
   nginx:
-    depends_on:
-      - api
-      - client
-    restart: always
-    build:
-      context: ./nginx
-      dockerfile: Dockerfile.dev
+    image: "lomitaswa/multi-nginx"
+    mem_limit: 128m
+    hostname: nginx
     ports:
-      - "2025:80"
+      - "80:80"
