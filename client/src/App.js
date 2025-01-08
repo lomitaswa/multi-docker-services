@@ -9,6 +9,7 @@ function App() {
     <Router>
       <div className="App">
         <nav className="nav-links">
+          <h3>Hi from Kubernetes</h3>
           <Link to="/">Home</Link>
           <Link to="/about">About</Link>
         </nav>
